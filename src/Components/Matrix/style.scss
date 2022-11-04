@@ -1,0 +1,65 @@
+@import '../../variables.scss';
+
+.matrix{
+    &__row{
+        display: flex;
+        align-items: center;
+    }
+    &__cell{
+        font-size: 1.1rem;
+        background-color: $main-color;
+        color:$text-color;
+        text-align: center;
+        width:60px;
+        height:30px;
+        border-radius: 10px;
+        margin:5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    &__cell_info{
+        background-color: $text-color;
+        color: #000;
+    }
+    &__cell_pointer{
+        cursor: pointer;
+    }
+    &__add-btn{
+        background-color: $main-color;
+        color:$text-color;
+        font-size: 1.1rem;
+        text-align: center;
+        border-radius: 10px;
+        padding:10px 15px;
+        margin-bottom: 20px;
+        border: 1px solid $text-color;
+        cursor: pointer;
+    }
+    &__cell_percent{
+        background-color: inherit;
+        color:#000;
+    }
+    &__cell_percent-back{
+        position: absolute;
+        background-color: rgb(255, 82, 82);
+        bottom:0;
+        left:0;
+        right:0;
+        width:100%;
+        z-index: -1;    
+    }
+    &__cell-delete{
+        cursor: pointer;
+        text-align: center;
+        margin-left:15px;
+    }
+    &__cell-total{
+        background-color: darken($main-color,20%);
+    }
+    &__cell_near{
+        background: rgb(249, 45, 45);
+    }
+}

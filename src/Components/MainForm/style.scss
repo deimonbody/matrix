@@ -1,0 +1,45 @@
+@import '../../variables.scss';
+
+.main-form{
+    display:flex;
+    flex-direction:column;
+    &__title{
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    &__inp-lbl{
+        margin-right: 80px;
+        font-size: 1.2rem;
+    }
+    &__inp{
+        border-radius: 5px;
+        width:50px;
+        height:15px;
+        outline: none;
+        border:1px solid black;
+        padding:5px 0 5px 10px
+    }
+    &__inp-container{
+       display: flex; 
+       justify-content: space-between;
+       margin-bottom: 20px;
+    }
+    &__btn{
+        background-color: $main-color;
+        color: $text-color;
+        border-radius: 10px;
+        padding:10px 35px;
+        text-align: center;
+        font-size: 1.2rem;
+        align-self: center;
+        border: 1px solid $main-color;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    &__btn_hidden{
+        cursor: auto;
+        background-color: rgb(182, 139, 214);
+        pointer-events: none;
+    }
+}
