@@ -1,18 +1,13 @@
 @import '../../variables.scss';
 
-.main-form{
+.mainForm{
     display:flex;
     flex-direction:column;
-    &__title{
-        font-size: 1.5rem;
-        text-align: center;
-        margin-bottom: 60px;
-    }
-    &__inp-lbl{
+    &InpLbl{
         margin-right: 80px;
         font-size: 1.2rem;
     }
-    &__inp{
+    &Inp{
         border-radius: 5px;
         width:50px;
         height:15px;
@@ -20,12 +15,12 @@
         border:1px solid black;
         padding:5px 0 5px 10px
     }
-    &__inp-container{
+    &InpContainer{
        display: flex; 
        justify-content: space-between;
        margin-bottom: 20px;
     }
-    &__btn{
+    &Btn{
         background-color: $main-color;
         color: $text-color;
         border-radius: 10px;
@@ -37,9 +32,14 @@
         cursor: pointer;
         margin-top: 15px;
     }
-    &__btn_hidden{
+    &BtnHidden{
         cursor: auto;
         background-color: rgb(182, 139, 214);
         pointer-events: none;
     }
+}
+.mainFormTitle{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 60px;
 }

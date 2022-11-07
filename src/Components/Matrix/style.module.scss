@@ -1,11 +1,11 @@
 @import '../../variables.scss';
 
 .matrix{
-    &__row{
+    &Row{
         display: flex;
         align-items: center;
     }
-    &__cell{
+    &Cell{
         font-size: 1.1rem;
         background-color: $main-color;
         color:$text-color;
@@ -14,20 +14,17 @@
         height:30px;
         border-radius: 10px;
         margin:5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flexMixin;
         position: relative;
     }
-    &__cell_info{
+    &CellInfo{
         background-color: $text-color;
         color: #000;
     }
-    &__cell_pointer{
+    &CellPointer{
         cursor: pointer;
     }
-    &__add-btn{
+    &AddBtn{
         background-color: $main-color;
         color:$text-color;
         font-size: 1.1rem;
@@ -38,11 +35,11 @@
         border: 1px solid $text-color;
         cursor: pointer;
     }
-    &__cell_percent{
+    &CellPercent{
         background-color: inherit;
         color:#000;
     }
-    &__cell_percent-back{
+    &CellPercentBack{
         position: absolute;
         background-color: rgb(255, 82, 82);
         bottom:0;
@@ -51,15 +48,15 @@
         width:100%;
         z-index: -1;    
     }
-    &__cell-delete{
+    &CellDelete{
         cursor: pointer;
         text-align: center;
         margin-left:15px;
     }
-    &__cell-total{
+    &СellTotal{
         background-color: darken($main-color,20%);
     }
-    &__cell_near{
+    &CellNear{
         background: rgb(249, 45, 45);
     }
 }

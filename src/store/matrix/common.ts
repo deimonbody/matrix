@@ -3,8 +3,6 @@ import { IMatrixElement } from '../../common/interfaces';
 export interface IState {
   matrix:IMatrixElement[][] | null;
   numOfCells:number;
-  numOfRows:number;
-  numbOfCols:number;
 }
 
 export enum MatrixActionTypes {
@@ -28,14 +26,6 @@ export interface IAddAmout {
   type:MatrixActionTypes.ADD_AMOUT,
   payload:string
 }
-export interface ISetNumberOfRows {
-  type:MatrixActionTypes.SET_NUMBER_OF_ROWS;
-  payload:number;
-}
-export interface ISetNumberOfCols {
-  type:MatrixActionTypes.SET_NUMBER_OF_COLS;
-  payload:number;
-}
 export interface IAddNewRow {
   type:MatrixActionTypes.ADD_NEW_ROW
   payload:IMatrixElement[]
@@ -45,4 +35,4 @@ export interface IDeleteRow {
   payload:number
 }
 export type MatrixAction = (ISetMatrixAction
-| ISetCell | IAddAmout | ISetNumberOfRows | ISetNumberOfCols | IAddNewRow | IDeleteRow);
+| ISetCell | IAddAmout | IAddNewRow | IDeleteRow);

@@ -6,8 +6,6 @@ import {
 const initialState:IState = {
   matrix: null,
   numOfCells: 0,
-  numOfRows: 0,
-  numbOfCols: 0,
 };
 
 export const matrixReducer = (state = initialState, action:MatrixAction):IState => {
@@ -34,25 +32,12 @@ export const matrixReducer = (state = initialState, action:MatrixAction):IState 
         matrix: newMatrix,
       };
     }
-    case (MatrixActionTypes.SET_NUMBER_OF_COLS): {
-      return {
-        ...state,
-        numbOfCols: action.payload,
-      };
-    }
-    case (MatrixActionTypes.SET_NUMBER_OF_ROWS): {
-      return {
-        ...state,
-        numOfRows: action.payload,
-      };
-    }
     case (MatrixActionTypes.ADD_NEW_ROW): {
       const newMatrix = [...state.matrix!];
       newMatrix.push(action.payload);
       return {
         ...state,
         matrix: newMatrix,
-        numOfRows: state.numOfRows + 1,
       };
     }
     case (MatrixActionTypes.DELET_ROW): {
@@ -61,7 +46,6 @@ export const matrixReducer = (state = initialState, action:MatrixAction):IState 
       return {
         ...state,
         matrix: newMatrix,
-        numOfRows: state.numOfRows - 1,
       };
     }
     default:

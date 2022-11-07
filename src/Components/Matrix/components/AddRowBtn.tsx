@@ -1,15 +1,19 @@
 import React from 'react';
 import { getRandomMatrix } from '../../../helper/matrix.helper';
-import { useAppSelector, useMatrixActions } from '../../../store/hooks';
+import { useMatrixActions } from '../../../store/hooks';
+import styles from '../style.module.scss';
 
-export const AddRowBtn = () => {
-  const { numbOfCols } = useAppSelector((store) => store.matrix);
+interface IAddRowBtn {
+  numbOfCols:number;
+}
+
+export const AddRowBtn:React.FC<IAddRowBtn> = ({ numbOfCols }) => {
   const { addNewRow } = useMatrixActions();
   const addRowHandler = () => {
     const newRow = getRandomMatrix(1, numbOfCols);
     addNewRow(newRow[0]);
   };
   return (
-    <button type="button" className="matrix__add-btn" onClick={addRowHandler}>AddRowBtn</button>
+    <button type="button" className={styles.matrixAddBtn} onClick={addRowHandler}>AddRowBtn</button>
   );
 };

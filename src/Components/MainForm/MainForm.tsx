@@ -1,60 +1,66 @@
-import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
+import cx from 'classnames';
 import { getRandomMatrix } from '../../helper/matrix.helper';
 import { useMatrixActions } from '../../store/hooks';
-import './style.scss';
+import styles from './style.module.scss';
 
-export const MainForm:React.FC = () => {
-  const {
-    setMatrixAction, setCell, setNumberOfCols, setNumberOfRow,
-  } = useMatrixActions();
-  const [numOfColumns, setNumOfColumns] = useState<number>(0);
-  const [numOfRows, setNumOfRows] = useState<number>(0);
+interface IMainForm {
+  numberOfRows:number;
+  numberOfColumns:number;
+  setNumberOfRows:React.Dispatch<React.SetStateAction<number>>
+  setNumberOfColumns:React.Dispatch<React.SetStateAction<number>>
+}
+
+export const MainForm:React.FC<IMainForm> = ({
+  numberOfRows, numberOfColumns, setNumberOfColumns, setNumberOfRows,
+}) => {
+  const { setMatrixAction, setCell } = useMatrixActions();
   const [numOfCells, setNumOfCells] = useState<number>(0);
   const [isNotVissible, setIsNotVissible] = useState(true);
 
   const hanlderChangeColumns = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setNumOfColumns(Number(e.target.value) > 0 ? Number(e.target.value) : 0);
+    setNumberOfColumns(Number(e.target.value) > 0 ? Number(e.target.value) : 0);
   };
   const hanlderChangeRows = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setNumOfRows(Number(e.target.value) > 0 ? Number(e.target.value) : 0);
+    setNumberOfRows(Number(e.target.value) > 0 ? Number(e.target.value) : 0);
   };
   const hanlderChangeCells = (e:React.ChangeEvent<HTMLInputElement>) => {
     setNumOfCells(Number(e.target.value) > 0 ? Number(e.target.value) : 0);
   };
 
   useEffect(() => {
-    if (numOfColumns === 0 || numOfRows === 0 || numOfCells === 0) setIsNotVissible(true);
+    if (numberOfColumns === 0 || numberOfRows === 0 || numOfCells === 0) setIsNotVissible(true);
     else setIsNotVissible(false);
-  }, [numOfColumns, numOfRows, numOfCells]);
+  }, [numberOfColumns, numberOfRows, numOfCells]);
 
   const handleOnSubmit = () => {
-    const matrix = getRandomMatrix(numOfRows, numOfColumns);
+    const matrix = getRandomMatrix(numberOfRows, numberOfColumns);
     setMatrixAction(matrix);
     setCell(numOfCells);
-    setNumberOfCols(numOfColumns);
-    setNumberOfRow(numOfRows);
   };
-  const btnClass = classNames('main-form__btn', { 'main-form__btn_hidden': isNotVissible });
   return (
-    <div className="main-form">
-      <p className="main-form__title ff-rob-bold">Matrix Builder</p>
-      <div className="main-form__container">
-        <div className="main-form__inp-container">
-          <p className="main-form__inp-lbl ff-rob-reg">Enter the number of columns</p>
-          <input className="main-form__inp" type="number" value={numOfColumns} onChange={hanlderChangeColumns} />
+    <div className={styles.mainForm}>
+      <p className={`${styles.mainFormTitle} ff-rob-bold`}>Matrix Builder</p>
+      <div>
+        <div className={styles.mainFormInpContainer}>
+          <p className={`${styles.mainFormInpLbl} ff-rob-reg`}>Enter the number of columns</p>
+          <input className={styles.mainFormInp} type="number" value={numberOfColumns} onChange={hanlderChangeColumns} />
         </div>
-        <div className="main-form__inp-container">
-          <p className="main-form__inp-lbl ff-rob-reg">Enter the number of rows</p>
-          <input className="main-form__inp" type="number" value={numOfRows} onChange={hanlderChangeRows} />
+        <div className={styles.mainFormInpContainer}>
+          <p className={`${styles.mainFormInpLbl} ff-rob-reg`}>Enter the number of rows</p>
+          <input className={styles.mainFormInp} type="number" value={numberOfRows} onChange={hanlderChangeRows} />
         </div>
-        <div className="main-form__inp-container">
-          <p className="main-form__inp-lbl ff-rob-reg">Enter the number of cells</p>
-          <input className="main-form__inp" type="number" value={numOfCells} onChange={hanlderChangeCells} />
+        <div className={styles.mainFormInpContainer}>
+          <p className={`${styles.mainFormInpLbl} ff-rob-reg`}>Enter the number of cells</p>
+          <input className={styles.mainFormInp} type="number" value={numOfCells} onChange={hanlderChangeCells} />
         </div>
 
       </div>
-      <button className={btnClass} type="button" onClick={handleOnSubmit}>Create matrix</button>
+      <button
+        className={cx(styles.mainFormBtn, { [styles.mainFormBtnHidden]: isNotVissible })}
+        type="button"
+        onClick={handleOnSubmit}
+      >Create matrix</button>
     </div>
   );
 };

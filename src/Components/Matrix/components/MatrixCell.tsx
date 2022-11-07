@@ -1,7 +1,8 @@
-import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
+import cx from 'classnames';
 import { getPercentOfCell } from '../../../helper/matrix.helper';
 import { useMatrixActions } from '../../../store/hooks';
+import styles from '../style.module.scss';
 
 interface IMatrixCell {
   id?:string;
@@ -41,16 +42,15 @@ export const MatrixCell:React.FC<IMatrixCell> = ({
     mouseOutNearistHandler();
     setOnHovered(false);
   };
-  const cellClass = classNames('matrix__cell_pointer matrix__cell', { 'matrix__cell_near': isNearCell });
   return (
     <>
       {isActiveCell
-        ? <div className="matrix__cell_percent matrix__cell">
+        ? <div className={`${styles.matrixCell} ${styles.matrixCellPercent}`}>
           {percent}%
-          <div className="matrix__cell_percent-back" style={{ height: `${percent}%` }} />
+          <div className={styles.matrixCellPercentBack} style={{ height: `${percent}%` }} />
         </div>
         : <div
-            className={cellClass}
+            className={cx(styles.matrixCellPointer, styles.matrixCell, { [styles.matrixCellNear]: isNearCell })}
             onClick={clickHanlder}
             onMouseOver={mouseOverHandler}
             onMouseOut={mouseOutHandler}

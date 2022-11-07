@@ -1,2 +1,9 @@
 $main-color:rgb(154, 66, 221);
 $text-color:rgb(255, 255, 255);
+
+@mixin flexMixin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

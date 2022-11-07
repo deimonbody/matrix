@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { IMatrixElement } from '../common/interfaces';
 
-export const getRandomMatrix = (m:number, n:number) => {
+export const getRandomMatrix = (m:number, n:number):IMatrixElement[][] => {
   const matrix = [];
   for (let i = 0; i < m; i += 1) {
     const row = [];
@@ -14,7 +14,7 @@ export const getRandomMatrix = (m:number, n:number) => {
   return matrix.map((row) => row.map((amount) => ({
     id: uuidv4(),
     amount,
-  } as IMatrixElement))) as IMatrixElement[][];
+  })));
 };
 export const getSumOfRows = (matrix:IMatrixElement[][]) => matrix.map((row) => {
   const numbers = row.map((el) => el.amount);

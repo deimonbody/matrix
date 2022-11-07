@@ -5,17 +5,17 @@ import { AddRowBtn } from './components/AddRowBtn';
 import { AvarageColumns } from './components/AvarageColumns';
 import { FirstRow } from './components/FirstRow';
 import { MainColumns } from './components/MainColumns';
-import './style.scss';
+import styles from './style.module.scss';
 
 interface IMatrix {
-  matrix:IMatrixElement[][]
+  matrix:IMatrixElement[][];
+  numOfRows:number;
+  numbOfCols:number
 }
 
-export const Matrix:React.FC<IMatrix> = ({ matrix }) => {
+export const Matrix:React.FC<IMatrix> = ({ matrix, numOfRows, numbOfCols }) => {
   const [columns, setColumns] = useState<number[][]>([]);
-  const {
-    numbOfCols, numOfRows, numOfCells,
-  } = useAppSelector((store) => store.matrix);
+  const { numOfCells } = useAppSelector((store) => store.matrix);
   const [sumOfEveryRows, setSumOfEveryRows] = useState<number[]>([]);
   const setColumnsHandler = (val:number[][]) => {
     setColumns(val);
@@ -25,8 +25,8 @@ export const Matrix:React.FC<IMatrix> = ({ matrix }) => {
   };
   return (
     <>
-      <AddRowBtn />
-      <div className="matrix">
+      <AddRowBtn numbOfCols={numbOfCols} />
+      <div className={styles.matrix}>
         <FirstRow numberOfColumns={numbOfCols} />
         <MainColumns
           matrix={matrix as IMatrixElement[][]}
