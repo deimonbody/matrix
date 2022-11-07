@@ -1,0 +1,23 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font-size: 14px;
+}
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('./fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('./fonts/Roboto-Regular.ttf');
+}
+
+.ff-rob-reg{
+    font-family: "Roboto-Regular";
+}
+.ff-rob-bold{
+    font-family: "Roboto-Bold";
+}
