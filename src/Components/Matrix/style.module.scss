@@ -2,8 +2,7 @@
 
 .matrix{
     &Row{
-        display: flex;
-        align-items: center;
+        @include flexMixin(row,center);
     }
     &Cell{
         font-size: 1.1rem;
@@ -14,7 +13,7 @@
         height:30px;
         border-radius: 10px;
         margin:5px;
-        @include flexMixin;
+        @include flexMixin(row,center,center);
         position: relative;
     }
     &CellInfo{
