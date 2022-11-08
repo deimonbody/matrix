@@ -21,17 +21,19 @@ export const MatrixCell:React.FC<IMatrixCell> = ({
   mouseOverNearistHandler, mouseOutNearistHandler,
 }) => {
   const { addAmount } = useMatrixActions();
-  const [percent, setPercent] = useState(0);
+  const [percent, setPercent] = useState('0');
   const [onHovered, setOnHovered] = useState(false);
   useEffect(() => {
     if (isActiveCell && amount) setPercent(getPercentOfCell(activeSum, amount));
   }, [activeSum, amount, isActiveCell]);
 
-  const clickHanlder = () => {
+  useEffect(() => {
     if (onHovered) {
       mouseOutNearistHandler();
       mouseOverNearistHandler(amount);
     }
+  }, [amount]);
+  const clickHanlder = () => {
     addAmount(id as string);
   };
   const mouseOverHandler = () => {

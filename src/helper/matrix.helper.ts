@@ -25,7 +25,7 @@ export const getAvarageOfColumn = (column:number[]) => (
   Math.floor(column.reduce((prev, next) => prev + next, 0) / column.length)
 );
 
-export const getPercentOfCell = (totalSum:number, amount:number) => (Math.floor((amount * 100) / totalSum));
+export const getPercentOfCell = (totalSum:number, amount:number) => (((amount * 100) / totalSum)).toFixed(1);
 export const getNearistIds = (matrix:IMatrixElement[][], findNumber:number, numberOfCell:number) => {
   const allItems:IMatrixElement[] = [];
   matrix.forEach((row) => {
