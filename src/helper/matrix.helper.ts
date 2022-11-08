@@ -27,13 +27,38 @@ export const getAvarageOfColumn = (column:number[]) => (
 
 export const getPercentOfCell = (totalSum:number, amount:number) => (Math.floor((amount * 100) / totalSum));
 export const getNearistIds = (matrix:IMatrixElement[][], findNumber:number, numberOfCell:number) => {
-  let allItems:IMatrixElement[] = [];
+  const allItems:IMatrixElement[] = [];
   matrix.forEach((row) => {
     row.forEach((cell) => {
       allItems.push(cell);
     });
   });
-  allItems = allItems.filter((el) => el.amount > findNumber);
-  allItems = allItems.sort((a, b) => a.amount - b.amount);
-  return allItems.slice(0, numberOfCell);
+  const biggerNumbers = allItems.filter((el) => el.amount > findNumber);
+  const lessNumbers = allItems.filter((el) => el.amount < findNumber);
+  biggerNumbers.sort((a, b) => a.amount - b.amount);
+  lessNumbers.sort((a, b) => b.amount - a.amount);
+  let iterator = numberOfCell;
+  const result = [];
+  while (iterator > 0) {
+    iterator -= 1;
+    if (!biggerNumbers.length && !lessNumbers.length) break;
+    if (!biggerNumbers.length) {
+      result.push(lessNumbers.pop());
+      continue;
+    }
+    if (!lessNumbers.length) {
+      result.push(biggerNumbers.shift());
+      continue;
+    }
+    const firstLessEl = lessNumbers[0];
+    const firstBiggerEl = biggerNumbers[0];
+    if ((findNumber - firstLessEl.amount) < (firstBiggerEl.amount - findNumber)) {
+      result.push(firstLessEl);
+      lessNumbers.shift();
+    } else {
+      result.push(firstBiggerEl);
+      biggerNumbers.shift();
+    }
+  }
+  return result;
 };

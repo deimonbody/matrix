@@ -11,7 +11,7 @@ interface IMatrixCell {
   activeSum:number;
   isNearCell:boolean;
   mouseOverNearistHandler:(amount:number)=>void,
-  mouseOutNearistHandler:()=>void
+  mouseOutNearistHandler:()=>void;
 }
 
 export const MatrixCell:React.FC<IMatrixCell> = ({

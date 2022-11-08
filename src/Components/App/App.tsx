@@ -14,10 +14,11 @@ export const App: React.FC = () => {
       setNumberOfColumns(matrix[0].length);
     }
   }, [matrix]);
+  const deleteRowHandler = () => setNumberOfRows(numberOfRows - 1);
   return (
     <div className={styles.app}>
       {matrix?.length && numberOfRows && numberOfColumns
-        ? <Matrix matrix={matrix} numOfRows={numberOfRows} numbOfCols={numberOfColumns} />
+        ? <Matrix matrix={matrix} numOfRows={numberOfRows} numbOfCols={numberOfColumns} deleteRowHandler={deleteRowHandler} />
         : <MainForm
             numberOfRows={numberOfRows}
             numberOfColumns={numberOfColumns}
