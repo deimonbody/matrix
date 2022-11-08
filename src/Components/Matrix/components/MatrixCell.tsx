@@ -10,7 +10,7 @@ interface IMatrixCell {
   isActiveCell:boolean;
   activeSum:number;
   isNearCell:boolean;
-  mouseOverNearistHandler:(amount:number)=>void,
+  mouseOverNearistHandler:(amount:number, id:string)=>void,
   mouseOutNearistHandler:()=>void;
 }
 
@@ -30,14 +30,14 @@ export const MatrixCell:React.FC<IMatrixCell> = ({
   useEffect(() => {
     if (onHovered) {
       mouseOutNearistHandler();
-      mouseOverNearistHandler(amount);
+      mouseOverNearistHandler(amount, id as string);
     }
   }, [amount]);
   const clickHanlder = () => {
     addAmount(id as string);
   };
   const mouseOverHandler = () => {
-    mouseOverNearistHandler(amount);
+    mouseOverNearistHandler(amount, id as string);
     setOnHovered(true);
   };
   const mouseOutHandler = () => {

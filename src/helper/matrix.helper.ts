@@ -26,14 +26,15 @@ export const getAvarageOfColumn = (column:number[]) => (
 );
 
 export const getPercentOfCell = (totalSum:number, amount:number) => (((amount * 100) / totalSum)).toFixed(1);
-export const getNearistIds = (matrix:IMatrixElement[][], findNumber:number, numberOfCell:number) => {
-  const allItems:IMatrixElement[] = [];
+export const getNearistIds = (matrix:IMatrixElement[][], findNumber:number, idOfFindNumber:string, numberOfCell:number) => {
+  let allItems:IMatrixElement[] = [];
   matrix.forEach((row) => {
     row.forEach((cell) => {
       allItems.push(cell);
     });
   });
-  const biggerNumbers = allItems.filter((el) => el.amount > findNumber);
+  allItems = allItems.filter((cell) => cell.id !== idOfFindNumber);
+  const biggerNumbers = allItems.filter((el) => el.amount >= findNumber);
   const lessNumbers = allItems.filter((el) => el.amount < findNumber);
   biggerNumbers.sort((a, b) => a.amount - b.amount);
   lessNumbers.sort((a, b) => b.amount - a.amount);

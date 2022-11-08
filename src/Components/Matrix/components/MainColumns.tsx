@@ -52,8 +52,8 @@ export const MainColumns:React.FC<IMainColumns> = ({
     setActiveSum(0);
   };
 
-  const mouseOverNearistHandler = (amount:number) => {
-    const result = getNearistIds(matrix, amount, numOfCells);
+  const mouseOverNearistHandler = (amount:number, id:string) => {
+    const result = getNearistIds(matrix, amount, id, numOfCells);
     setActiveNearistIds(result.map((el) => el!.id));
   };
   const mouseOutNearistHandler = () => {
