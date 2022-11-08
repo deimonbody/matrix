@@ -12,12 +12,13 @@ interface IMainColumns {
   numOfRows:number;
   setColumnsHandler:(val:number[][])=>void;
   setSumOfEveryRowsHandler:(val:number[])=>void;
-  sumOfEveryRows:number[]
+  sumOfEveryRows:number[];
+  deleteRowHandler:()=>void;
 }
 
 export const MainColumns:React.FC<IMainColumns> = ({
   matrix, numOfCells, numOfRows, numbOfCols, setColumnsHandler,
-  setSumOfEveryRowsHandler, sumOfEveryRows,
+  setSumOfEveryRowsHandler, sumOfEveryRows, deleteRowHandler,
 }) => {
   const [activeSumIds, setActiveSumIds] = useState<string[]>([]);
   const [activeSum, setActiveSum] = useState(0);
@@ -27,7 +28,7 @@ export const MainColumns:React.FC<IMainColumns> = ({
 
   useEffect(() => {
     setIsLoading(true);
-    if (matrix && matrix.length) {
+    if (matrix?.length) {
       const newColumns = [];
       for (let i = 0; i < numbOfCols; i += 1) {
         const column = [];
@@ -40,7 +41,7 @@ export const MainColumns:React.FC<IMainColumns> = ({
       setSumOfEveryRowsHandler(getSumOfRows(matrix));
       setIsLoading(false);
     }
-  }, [numOfRows]);
+  }, [numOfRows, matrix]);
 
   const mouseOverSumHandler = (idOfRow:number, totalSumOfRow:number) => {
     setActiveSum(totalSumOfRow);
@@ -51,9 +52,9 @@ export const MainColumns:React.FC<IMainColumns> = ({
     setActiveSum(0);
   };
 
-  const mouseOverNearistHandler = (amount:number) => {
-    const result = getNearistIds(matrix, amount, numOfCells);
-    setActiveNearistIds(result.map((el) => el.id));
+  const mouseOverNearistHandler = (amount:number, id:string) => {
+    const result = getNearistIds(matrix, amount, id, numOfCells);
+    setActiveNearistIds(result.map((el) => el!.id));
   };
   const mouseOutNearistHandler = () => {
     setActiveNearistIds([]);
@@ -82,7 +83,10 @@ export const MainColumns:React.FC<IMainColumns> = ({
           >{sumOfEveryRows[index]}</div>
           <div
             className={`${styles.matrixCellDelete} ff-rob-bold`}
-            onClick={() => deleteRow(index)}
+            onClick={() => {
+              deleteRowHandler();
+              deleteRow(index);
+            }}
           >x</div>
         </div>))
 }

@@ -10,10 +10,13 @@ import styles from './style.module.scss';
 interface IMatrix {
   matrix:IMatrixElement[][];
   numOfRows:number;
-  numbOfCols:number
+  numbOfCols:number;
+  deleteRowHandler:()=>void;
 }
 
-export const Matrix:React.FC<IMatrix> = ({ matrix, numOfRows, numbOfCols }) => {
+export const Matrix:React.FC<IMatrix> = ({
+  matrix, numOfRows, numbOfCols, deleteRowHandler,
+}) => {
   const [columns, setColumns] = useState<number[][]>([]);
   const { numOfCells } = useAppSelector((store) => store.matrix);
   const [sumOfEveryRows, setSumOfEveryRows] = useState<number[]>([]);
@@ -36,6 +39,7 @@ export const Matrix:React.FC<IMatrix> = ({ matrix, numOfRows, numbOfCols }) => {
           sumOfEveryRows={sumOfEveryRows}
           setSumOfEveryRowsHandler={setSumOfEveryRowsHandler}
           setColumnsHandler={setColumnsHandler}
+          deleteRowHandler={deleteRowHandler}
         />
         <AvarageColumns columns={columns} sumOfEveryRows={sumOfEveryRows} />
       </div>
