@@ -1,0 +1,9 @@
+$main-color:rgb(154, 66, 221);
+$text-color:rgb(255, 255, 255);
+
+@mixin flexMixin($direction:row,$alignItems:flex-start,$justifyContent:stretch) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $alignItems;
+    justify-content: $justifyContent;
+}

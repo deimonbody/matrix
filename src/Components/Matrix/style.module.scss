@@ -1,0 +1,61 @@
+@import '../../variables.scss';
+
+.matrix{
+    &Row{
+        @include flexMixin(row,center);
+    }
+    &Cell{
+        font-size: 1.1rem;
+        background-color: $main-color;
+        color:$text-color;
+        text-align: center;
+        width:60px;
+        height:30px;
+        border-radius: 10px;
+        margin:5px;
+        @include flexMixin(row,center,center);
+        position: relative;
+    }
+    &CellInfo{
+        background-color: $text-color;
+        color: #000;
+    }
+    &CellPointer{
+        cursor: pointer;
+    }
+    &AddBtn{
+        background-color: $main-color;
+        color:$text-color;
+        font-size: 1.1rem;
+        text-align: center;
+        border-radius: 10px;
+        padding:10px 15px;
+        margin-bottom: 20px;
+        border: 1px solid $text-color;
+        cursor: pointer;
+    }
+    &CellPercent{
+        background-color: inherit;
+        color:#000;
+    }
+    &CellPercentBack{
+        position: absolute;
+        background-color: rgb(255, 82, 82);
+        bottom:0;
+        left:0;
+        right:0;
+        width:100%;
+        z-index: -1;    
+    }
+    &CellDelete{
+        cursor: pointer;
+        text-align: center;
+        margin-left:15px;
+    }
+    &СellTotal{
+        background-color: darken($main-color,20%);
+    }
+    &CellNear{
+        background: rgb(249, 45, 45);
+    }
+}
