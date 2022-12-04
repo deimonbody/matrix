@@ -9,6 +9,7 @@
 * Redux
 * ESLint
 * Prettier
+* React
 
 
 
