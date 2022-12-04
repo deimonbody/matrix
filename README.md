@@ -7,6 +7,9 @@
 * CSS 3
 * SCSS
 * Redux
+* ESLint
+* Prettier
+
 
 
 ## Setup
